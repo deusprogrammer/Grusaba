@@ -3,6 +3,9 @@ package com.ponychan.forum
 import java.security.MessageDigest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
+import org.imgscalr.Scalr
+import javax.imageio.ImageIO
+
 class FileService {
 	def store(final file) {
 		def path = null
@@ -17,6 +20,61 @@ class FileService {
 		}
 		
 		return path
+	}
+	
+	def writeThumbnail(String filename, OutputStream out) {
+		def file  = new File(filename)
+		
+		if (!file || file.size() == 0) {
+			return false
+		}		
+		
+		String ext = getExtension(file)
+		def image = ImageIO.read(file)
+		def thumbnail = Scalr.resize(image, 200)
+		
+		switch (ext.toLowerCase()) {
+			case ".gif":
+				ImageIO.write(thumbnail, "GIF", out)
+				break
+			case ".png":
+				ImageIO.write(thumbnail, "PNG", out)
+				break
+			case ".jpg":
+			case ".jpeg":
+			default:
+				ImageIO.write(thumbnail, "JPEG", out)
+				break
+		}
+		
+		return true
+	}
+	
+	def writeImage(final String filename, OutputStream out) {
+		def file = new File(filename)
+		
+		if (!file || file.size() == 0) {
+			return false
+		}
+		
+		def image = ImageIO.read(file)
+		String ext = getExtension(file)
+		
+		switch (ext.toLowerCase()) {
+			case ".gif":
+				ImageIO.write(image, "GIF", out)
+				break
+			case ".png":
+				ImageIO.write(image, "PNG", out)
+				break
+			case ".jpg":
+			case ".jpeg":
+			default:
+				ImageIO.write(image, "JPEG", out)
+				break
+		}
+		
+		return true
 	}
 	
 	def getExtension(final CommonsMultipartFile file) {

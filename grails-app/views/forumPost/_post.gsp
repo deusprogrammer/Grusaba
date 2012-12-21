@@ -6,6 +6,6 @@
 	</g:if>
 	<div class="post-content" style="display:inline-block;">
 	    <div class="post-header" style="vertical-align: top">[${post.dateCreated}]</div>
-	    <div class="post-text" style="vertical-align: top">${post.text}</div>
+	    <div class="post-text" style="vertical-align: top">${post.strippedText}</div>
     </div>
 </div>

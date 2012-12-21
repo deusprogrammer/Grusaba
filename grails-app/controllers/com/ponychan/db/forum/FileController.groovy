@@ -19,22 +19,9 @@ class FileController {
 			return
 		}
 		
-		def file  = new File(post.attachedImage)
-		String ext   = fileService.getExtension(file)
-		def image = ImageIO.read(file)
-		def thumbnail = Scalr.resize(image, 200)
-		switch (ext.toLowerCase()) {
-			case ".gif":
-				ImageIO.write(thumbnail, "GIF", response.outputStream)
-				break
-			case ".png":
-				ImageIO.write(thumbnail, "PNG", response.outputStream)
-				break
-			case ".jpg":
-			case ".jpeg":
-			default:
-				ImageIO.write(thumbnail, "JPEG", response.outputStream)
-				break
+		if (!fileService.writeThumbnail(post.attachedImage, response.outputStream)) {
+			response.status = 404
+			return	
 		}
 		
 		return
@@ -48,14 +35,11 @@ class FileController {
 			return
 		}
 		
-		def file = new File(post.attachedImage)
-		
-		if (!file || file.size() == 0) {
+		if (!fileService.writeImage(post.attachedImage, response.outputStream)) {
 			response.status = 404
 			return
 		}
 		
-		response.outputStream << new File(post.attachedImage).readBytes()
 		return
 	}
 }
