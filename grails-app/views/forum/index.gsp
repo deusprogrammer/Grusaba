@@ -1,6 +1,6 @@
 <html>
 <body>
-<g:each in="${boards}" var="board">
+<g:each in="${boards.sort{it.id}}" var="board">
     ${board}<br/>
 </g:each>
 </body>

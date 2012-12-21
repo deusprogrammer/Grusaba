@@ -15,10 +15,10 @@ class ForumBoardController {
         [board: board]
     }
     
-    def board(String abbrev) {
-        def board = ForumBoard.findByAbbreviation("/" + abbrev + "/")
+    def board(String id) {
+        def board = ForumBoard.findByAbbreviation("/" + id + "/")
         
-        println "ABBREV: ${abbrev}"
+        println "ABBREV: ${id}"
                 
         if (!board) {
             println "Unable to find the requested board"
@@ -26,7 +26,7 @@ class ForumBoardController {
             redirect(controller: "forum", action: "index")
         }
         
-        [board: board]
+        render(view: "show", model: [board: board])
     }
     
     def create() {

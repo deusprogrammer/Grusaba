@@ -3,7 +3,7 @@ package com.ponychan.db.forum
 class ForumPost extends ForumObject {
     String text
     String attachedImage
-    boolean hasImage = false
+    boolean hasAttachedImage = false
 
     static belongsTo = [parent: ForumThread]
     

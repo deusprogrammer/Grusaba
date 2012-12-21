@@ -1,6 +1,8 @@
 package com.ponychan.db.forum
 
 class ForumThreadController {
+	
+	def fileService
 
     def index() { }
     
@@ -18,10 +20,18 @@ class ForumThreadController {
     }
     
     def save() {
+		//Get file
+		def f = request.getFile('uploadFile')
+		def path = fileService.store(f)
+		
         def thread = new ForumThread(params)
         def firstPost = new ForumPost()
         firstPost.text = params.post.text
         firstPost.name = "POST"
+		if (path) {
+			firstPost.attachedImage = path
+			firstPost.hasAttachedImage = true
+		}
         thread.name = "THREAD"
         thread.addToChildren(firstPost)
         
