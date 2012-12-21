@@ -1,6 +1,7 @@
 package com.ponychan.forum
 
 import java.security.MessageDigest
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class FileService {
 	def store(final file) {
@@ -18,8 +19,19 @@ class FileService {
 		return path
 	}
 	
-	def getExtension(final file) {
+	def getExtension(final CommonsMultipartFile file) {
 		def filename = file.getOriginalFilename()
+		
+		if (filename.lastIndexOf('.')) {
+			return filename[filename.lastIndexOf('.')..-1]
+		}
+		else {
+			return ""
+		}
+	}
+	
+	def getExtension(final File file) {
+		def filename = file.name
 		
 		if (filename.lastIndexOf('.')) {
 			return filename[filename.lastIndexOf('.')..-1]

@@ -11,9 +11,8 @@ class ForumThreadController {
         
         if (!thread) {
             println "No thread with id ${id}"
-            flash.message = "No thread with id ${id}"
-            redirect(controller: "forum", action:"index")
-            return
+            response.status = 404
+			return
         }
         
         [thread: thread]

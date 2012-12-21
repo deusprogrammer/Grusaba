@@ -8,8 +8,8 @@ class ForumBoardController {
         
         if (!board) {
             println "Unable to find the requested board"
-            flash.message = "Unable to find the requested board"
-            redirect(controller: "forum", action: "index")
+            response.status = 404
+			return
         }
         
         [board: board]
@@ -22,8 +22,8 @@ class ForumBoardController {
                 
         if (!board) {
             println "Unable to find the requested board"
-            flash.message = "Unable to find the requested board"
-            redirect(controller: "forum", action: "index")
+            response.status = 404
+			return
         }
         
         render(view: "show", model: [board: board])
@@ -64,9 +64,8 @@ class ForumBoardController {
         def board = ForumBoard.get(id)
         
         if (!board) {
-            flash.message = "No such board exists."
-            redirect(controller: "forum", action: "index")
-            return
+            response.status = 404
+			return
         }
         
         [board: board]
