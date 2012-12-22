@@ -57,23 +57,7 @@ class FileService {
 			return false
 		}
 		
-		def image = ImageIO.read(file)
-		String ext = getExtension(file)
-		
-		switch (ext.toLowerCase()) {
-			case ".gif":
-				ImageIO.write(image, "GIF", out)
-				break
-			case ".png":
-				ImageIO.write(image, "PNG", out)
-				break
-			case ".jpg":
-			case ".jpeg":
-			default:
-				ImageIO.write(image, "JPEG", out)
-				break
-		}
-		
+		out << file.getBytes()
 		return true
 	}
 	
