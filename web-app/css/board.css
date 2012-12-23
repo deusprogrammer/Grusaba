@@ -1,5 +1,10 @@
 body {
-	background-color: #FFD6CC;
+	font-family: arial,helvetica,sans-serif;
+	font-size: 10pt;
+}
+
+div.title {
+	margin: auto;
 }
 
 div.flash-message {
@@ -19,29 +24,54 @@ div.new-post {
 	width:700px;
 	margin: 10px;
 	background-color: #FFAD99;
+	border-bottom: 1px solid #B2796B;
+	border-right: 1px solid #B2796B;
 }
 
 button.new-post {
-	
 }
 
 input[type="text"].new-post {
-	
 }
 
 input[type="file"].new-post {
-	
 }
 
-textarea.new-post {
-	
+textarea.new-post {	
+}
+
+div.mode {
+	background-color: #E04000;
+	padding: 1px;
+	text-align: center;
+	color: white;
+	font-weight: bold;
+	font-size: larger;
+	margin-top: 8px;
+}
+
+div.title {
+	text-align: center;
+	font-family: Tahoma,sans-serif;
+	font-size: 28px;
+	font-weight: bold;
+	letter-spacing: -2px;
+	margin-top: 0px;
+	color: #AF0A0F;
+}
+
+div.first-post {
 }
 
 div.post {
+	position: relative;
+	left: 20px;
 	margin: 10px;
 	padding: 10px;
 	width: 700px;
-	background-color: #FFAD99;
+	background-color: #FFCACA;
+	border-bottom: 1px solid #E6B6B6;
+	border-right: 1px solid #E6B6B6;
 }
 
 div.post-content {
@@ -59,7 +89,28 @@ div.post-text {
 }
 
 div.post-header {
-	color: blue;
-	border-bottom: 1px solid black;
 	width: 100%;
+}
+
+span.poster {
+	color: #117743;
+	font-weight: bold;
+}
+
+table.new-post {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table.new-post > tbody > tr > td > input[type="text"] {
+	width: 232px;
+}
+
+table.new-post > tbody > tr > td:first-child {
+	background-color: #98E;
+	color: black;
+	font-weight: bold;
+	border: 1px solid black;
+	padding: 0 5px;
+	font-size: 10pt;
 }

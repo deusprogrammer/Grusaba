@@ -1,5 +1,11 @@
-<div class="post">
-	<div class="post-header">${post.owner.username ?: "anonymous"} | IP: ${post.owner.ipAddress} | [${post.dateCreated}]</div>
+<g:if test="${first}">
+	<div class="first-post">
+	<div class="post-header"><span class="poster"><a alt="${post.owner.ipAddress}" href="#">${post.owner.username ?: "anonymous"}</a></span> ${post.dateCreated} No. ${post.id} [<a href="${createLink(controller:'forumThread', action: 'show', id: post.parent.id)}">Reply</a>]</div>
+</g:if>
+<g:else>
+	<div class="post">
+	<div class="post-header"><span class="poster"><a alt="${post.owner.ipAddress}" href="#">${post.owner.username ?: "anonymous"}</a></span> ${post.dateCreated} No. ${post.id}</div>
+</g:else>
 	<div class="post-content" style="display:inline-block;">
 		<g:if test="${post.hasAttachedImage}">
 			<div class="post-image">

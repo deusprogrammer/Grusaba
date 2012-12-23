@@ -3,8 +3,10 @@
 		<meta name="layout" content="board">
 	</head>
 	<body>
-	    <h2>${board}</h2>
+	    <div class="title"><h1 class="board">${board.abbreviation}- ${board.name}</h1></div>
+	    <hr />
 	    <g:render template="/forumThread/newThreadForm" />
+	    <hr />
 	    <g:each in="${board.children.sort{it.dateCreated.getTime()}}" var="thread">
 	        <g:render template="/forumThread/thread" model="${[thread: thread]}" />
 	    </g:each>
