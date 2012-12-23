@@ -21,11 +21,15 @@ class UserService {
 	
 	def canPost() {
 		def user = currentUser
-		def now = new Date()
+		Date now = new Date()
+		Date then = user.lastPost
 		
 		use(groovy.time.TimeCategory) {
-			def duration = now - user.lastPost
-			return duration.seconds > 15
+			def duration = now.time - then.time
+			
+			println "TIME PASSED: " + duration
+			
+			return duration > 15 * 1000
 		}
 	}
 	
