@@ -1,5 +1,5 @@
 div.flash-message {
-	position: absolute;
+	position: fixed;
 	width: 400px;
 	height: 200px;
 	background: white;
