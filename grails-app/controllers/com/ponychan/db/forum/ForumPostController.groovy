@@ -19,19 +19,21 @@ class ForumPostController {
 			return
 		}
 		
+		/*
 		if (!userService.canPost()) {
 			println "You must wait before you can post again."
 			flash.message = "You must wait before you can post again."
 			redirect(controller: "forumThread", action: "show", id: params.parent.id)
 			return
 		}
+		*/
 		
 		def f = request.getFile('uploadFile')
 		def path = fileService.store(f)
 		
         def post = new ForumPost(params)
-        post.name = "POST"
 		post.owner = user
+		post.email = params.email
 		
 		if (path) {
 			post.attachedImage = path
@@ -41,17 +43,20 @@ class ForumPostController {
 		user.addToForumObjects(post)
 		user.lastPost = user.lastSeen = new Date()
 		
-        if (!post.save()) {
+        if (!post.save(flush: true)) {
             flash.message = post.errors
             redirect(controller: "forumThread", action: "show", id: params.parent.id)
             return
         }
 		
-		if (!user.save()) {
+		if (!user.save(flush: true)) {
 			flash.message = user.errors
 			redirect(controller: "forumThread", action: "show", id: params.parent.id)
 			return
 		}
+		
+		println "POSTER NAME: ${post.name}"
+		println "EMAIL:       ${post.email}"
         
         redirect(controller: "forumThread", action: "show", id: params.parent.id)
     }

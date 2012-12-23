@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Grusaba Message Board</title>
+		<title><g:layoutTitle default="XChan" /></title>
 		<link rel="stylesheet" href="${resource(dir: 'css', file: 'board.css')}" type="text/css">
 		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script type="text/javascript" src="${resource(dir: 'js', file: 'board.js')}"></script>

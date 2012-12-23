@@ -59,7 +59,7 @@ class ForumBoardController {
             return
         }
         
-        redirect(action: "show")
+        redirect(controller: "forum", action: "index")
         return
     }
     

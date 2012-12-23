@@ -3,7 +3,7 @@ package com.ponychan.db.forum
 import com.ponychan.db.users.User;
 
 class ForumObject {
-    String name
+    String name = ""
     
     Date dateCreated
     Date lastUpdated
@@ -11,5 +11,6 @@ class ForumObject {
 
     static constraints = {
         owner nullable: true
+		name nullable: true
     }
 }

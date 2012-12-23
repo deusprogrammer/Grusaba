@@ -15,6 +15,7 @@ class SecurityFilters {
 					if (!user) {
 						println "NEW IP HAS CONNECTED!"
 						user = new AnonymousUser(ipAddress: ipAddress)
+						user.lastPost = new Date()
 						user.save(flush: true)
 					}
 					else {

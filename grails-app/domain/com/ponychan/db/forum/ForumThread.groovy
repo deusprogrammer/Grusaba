@@ -13,5 +13,6 @@ class ForumThread extends ForumObject {
     }
     
     static constraints = {
+		topic nullable: true
     }
 }

@@ -2,6 +2,8 @@ package com.ponychan.db.forum
 
 class ForumPost extends ForumObject {
     String text
+	String topic
+	String email
     String attachedImage
     boolean hasAttachedImage = false
 
@@ -13,5 +15,7 @@ class ForumPost extends ForumObject {
     
     static constraints = {
         attachedImage nullable: true
+		topic nullable: true
+		email nullable: true
     }
 }

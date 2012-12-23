@@ -3,6 +3,12 @@ body {
 	font-size: 10pt;
 }
 
+hr {
+	border: none;
+	border-top: 1px solid #B7C5D9;
+	height: 0;
+}
+
 div.title {
 	margin: auto;
 }
@@ -65,13 +71,14 @@ div.first-post {
 
 div.post {
 	position: relative;
-	left: 20px;
-	margin: 10px;
-	padding: 10px;
+	left: 50px;
+	background-color: #D6DAF0;
+	border: 1px solid #B7C5D9;
+	border-left: none;
+	border-top: none;
+	display: table;
+	padding: 2px;
 	width: 700px;
-	background-color: #FFCACA;
-	border-bottom: 1px solid #E6B6B6;
-	border-right: 1px solid #E6B6B6;
 }
 
 div.post-content {
@@ -97,6 +104,11 @@ span.poster {
 	font-weight: bold;
 }
 
+span.subject {
+	color: #0F0C5D;
+	font-weight: bold;
+}
+
 table.new-post {
 	margin-left: auto;
 	margin-right: auto;
@@ -113,4 +125,8 @@ table.new-post > tbody > tr > td:first-child {
 	border: 1px solid black;
 	padding: 0 5px;
 	font-size: 10pt;
+}
+
+a.email-link, a.post-number {
+	text-decoration: none;
 }

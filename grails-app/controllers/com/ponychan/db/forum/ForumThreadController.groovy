@@ -31,12 +31,14 @@ class ForumThreadController {
 			return
 		}
 		
+		/*
 		if (!userService.canPost()) {
 			println "You must wait before you can post again."
 			flash.message = "You must wait before you can post again."
 			redirect(controller: "forumBoard", action: "show", id: params.parent.id)
 			return
 		}
+		*/
 		
 		//Get file
 		def f = request.getFile('uploadFile')
@@ -52,13 +54,14 @@ class ForumThreadController {
         def thread = new ForumThread(params)
         def firstPost = new ForumPost()
 		
+		firstPost.name = params.name
+		firstPost.topic = params.topic
         firstPost.text = params.post.text
-        firstPost.name = "POST"
+		firstPost.email = params.email
 		firstPost.owner = user
 		firstPost.attachedImage = path
 		firstPost.hasAttachedImage = true
 		
-        thread.name = "THREAD"
 		thread.owner = user
         thread.addToChildren(firstPost)
 		
@@ -81,6 +84,9 @@ class ForumThreadController {
 			redirect(controller: "forumBoard", action: "show", id: params.parent.id)
 			return
 		}
+		
+		println "POSTER NAME: ${firstPost.name}"
+		println "EMAIL:       ${firstPost.email}"
         
         redirect(action: "show", id: thread.id)
     }

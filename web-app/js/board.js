@@ -30,4 +30,10 @@ $(function () {
 	$("button.flash-message").click(function() {
 		$("div.flash-message").fadeOut("slow");
 	})
+	
+	$("a.post-number").click(function () {
+		var postNumber = $(this).html();
+		console.log("POST: " + postNumber)
+		$("table.new-post textArea").val($("table.new-post textArea").val() + ">>" + postNumber + "\n");
+	})
 })
