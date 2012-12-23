@@ -7,7 +7,7 @@ class UrlMappings {
 			}
 		}
 		
-		"/"(controller: "forum", action: "index")
+		"/list"(controller: "forum", action: "index")
 		"/board/$id"(controller: "forumBoard", action: "board", id: id)
 		"/board/$board/thread/$id"(controller: "forumThread", action: "show", id: id)
 		"/admin/board/create"(controller: "forumBoard", action: "create")
