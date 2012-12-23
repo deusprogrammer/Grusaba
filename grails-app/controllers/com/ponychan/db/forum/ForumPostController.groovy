@@ -15,7 +15,14 @@ class ForumPostController {
 		if (!user) {
 			println "Unknown error."
 			flash.message = "Unknown error."
-			redirect(controller: "forumBoard", action: "show", id: params.parent.id)
+			redirect(controller: "forumThread", action: "show", id: params.parent.id)
+			return
+		}
+		
+		if (!userService.canPost()) {
+			println "You must wait before you can post again."
+			flash.message = "You must wait before you can post again."
+			redirect(controller: "forumThread", action: "show", id: params.parent.id)
 			return
 		}
 		

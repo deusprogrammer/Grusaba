@@ -31,6 +31,13 @@ class ForumThreadController {
 			return
 		}
 		
+		if (!userService.canPost()) {
+			println "You must wait before you can post again."
+			flash.message = "You must wait before you can post again."
+			redirect(controller: "forumBoard", action: "show", id: params.parent.id)
+			return
+		}
+		
 		//Get file
 		def f = request.getFile('uploadFile')
 		def path = fileService.store(f)

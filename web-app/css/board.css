@@ -11,6 +11,27 @@ div.thread {
 	margin:10px;
 }
 
+div.new-post {
+	border:1px solid black;
+	width:700px;
+}
+
+button.new-post {
+	
+}
+
+input[type="text"].new-post {
+	
+}
+
+input[type="file"].new-post {
+	
+}
+
+textarea.new-post {
+	
+}
+
 div.post {
 	margin: 10px;
 	padding: 10px;
@@ -36,11 +57,4 @@ div.post-header {
 	color: blue;
 	border-bottom: 1px solid black;
 	width: 100%;
-}
-
-textarea {
-}
-
-input[type="text"] {
-	
 }

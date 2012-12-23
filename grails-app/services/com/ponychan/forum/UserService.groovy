@@ -19,6 +19,16 @@ class UserService {
 		user.save()
     }
 	
+	def canPost() {
+		def user = currentUser
+		def now = new Date()
+		
+		use(groovy.time.TimeCategory) {
+			def duration = now - user.lastPost
+			return duration.seconds > 15
+		}
+	}
+	
 	def setCurrentUser(def user) {
 		session.user = user.id
 		session.userType = user.getClass().getSimpleName()
