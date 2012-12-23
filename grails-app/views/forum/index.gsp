@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<meta name="layout" content="main">
+		<meta name="layout" content="board">
 	</head>
 	<body>
 		<g:each in="${boards.sort{it.id}}" var="board">

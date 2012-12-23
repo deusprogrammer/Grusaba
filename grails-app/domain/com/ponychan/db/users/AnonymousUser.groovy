@@ -1,7 +1,11 @@
 package com.ponychan.db.users
 
 class AnonymousUser extends User {
-    IPAddress ipAddress
+    String ipAddress
+	
+	def getUsername() {
+		return "Anonymous"
+	}
 
     static constraints = {
     }

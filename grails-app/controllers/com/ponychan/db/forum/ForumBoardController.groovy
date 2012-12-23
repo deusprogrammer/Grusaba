@@ -8,7 +8,8 @@ class ForumBoardController {
         
         if (!board) {
             println "Unable to find the requested board"
-            response.status = 404
+			flash.message = "Unable to find the requested board"
+            redirect(controller: "forum", action: "index")
 			return
         }
         
@@ -22,7 +23,8 @@ class ForumBoardController {
                 
         if (!board) {
             println "Unable to find the requested board"
-            response.status = 404
+			flash.message = "Unable to find the requested board"
+            redirect(controller: "forum", action: "index")
 			return
         }
         
@@ -32,7 +34,7 @@ class ForumBoardController {
     def create() {
         if (!params.forum) {
             flash.message = "Invalid parameter passed."
-            redirect(action: index)
+            redirect(action: "index")
             return
         }
         
@@ -40,7 +42,7 @@ class ForumBoardController {
         
         if (!forum) {
             flash.message = "No forum named ${params.forum}."
-            redirect(action: index)
+            redirect(action: "index")
             return
         }
         

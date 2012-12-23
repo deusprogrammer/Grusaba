@@ -1,16 +1,19 @@
 package com.ponychan.db.users
 
-import com.ponychan.db.forum.ForumObject;
-import com.ponychan.db.forum.ForumPost;
-import com.ponychan.db.forum.ForumThread;
+import com.ponychan.db.forum.ForumObject
+import com.ponychan.db.forum.ForumPost
+import com.ponychan.db.forum.ForumThread
 
 class User {
     Date dateCreated
-    Date lastSeen
+    Date lastSeen = new Date()
+	Date lastPost
     boolean banned = false
     
     static hasMany = [forumObjects: ForumObject, threads: ForumThread, posts: ForumPost, contributedTo: ForumThread]
 
     static constraints = {
+		lastSeen nullable: true
+		lastPost nullable: true
     }
 }
