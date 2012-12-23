@@ -22,12 +22,18 @@ class SecurityFilters {
 					}
 					
 					userService.setCurrentUser(user)
+					currentUser = user
 					
 					println "USER IS LOGGED IN ANONYMOUSLY AS IP ${user.ipAddress}"
 				}
 				else {
 					println "LAST SEEN: ${currentUser.lastSeen}"
 					println "LAST POST: ${currentUser.lastPost}"
+				}
+				
+				if (currentUser.banned) {
+					redirect(controller: "error", action: "banned")
+					return
 				}
             }
             after = { Map model ->
