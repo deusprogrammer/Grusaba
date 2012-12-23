@@ -74,6 +74,21 @@ class ForumBoardController {
         
         [board: board, forum: board.parent]
     }
+	
+	def editBoard(String id) {
+		def board = ForumBoard.findByAbbreviation("/" + id + "/")
+        
+        println "ABBREV: ${id}"
+                
+        if (!board) {
+            println "Unable to find the requested board"
+			flash.message = "Unable to find the requested board"
+            redirect(controller: "forum", action: "index")
+			return
+        }
+		
+		[board: board, forum: board.parent]
+	}
     
     def update(Long id) {
         def board = ForumBoard.get(id)

@@ -3,7 +3,7 @@
 <div class="board-menu">
 	[
 	<g:each in="${boards.sort{it.id}}" var="board">
-	    <a class="board-menu" href="${createLink(controller: 'forumBoard', action: 'show', id: board.id)}">${board.abbreviation}</a>
+	    <g:link class="board-menu" controller="forumBoard" action="board" id="${board.abbreviation.replaceAll("/", "")}">${board.abbreviation.replaceAll("/", "")}</g:link> / 
 	</g:each>
 	]
 </div>

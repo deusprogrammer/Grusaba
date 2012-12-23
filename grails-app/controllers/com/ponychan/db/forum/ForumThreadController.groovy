@@ -86,6 +86,6 @@ class ForumThreadController {
 		println "POSTER NAME: ${firstPost.name}"
 		println "EMAIL:       ${firstPost.email}"
         
-        redirect(action: "show", id: thread.id)
+        redirect(action: "show", id: thread.id, params: [board: thread.parent.abbreviation])
     }
 }

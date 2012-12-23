@@ -6,7 +6,7 @@
 </g:else>
 <div class="post-header"><span class="subject">${post.topic}</span> <span class="poster" title="IP: ${post.owner.ipAddress}"><g:if test="${post.email}"><a class="email-link" href="mailto:${post.email}"></g:if>${(post.name != "" && post.name != null) ? post.name : post.owner.username}<g:if test="${post.email}"></a></g:if></span> ${post.dateCreated} No. <a class="post-number" href="#">${post.id}</a>
 <g:if test="${first}">
-	[<a href="${createLink(controller:'forumThread', action: 'show', id: post.parent.id)}">Reply</a>]
+	[<g:link controller="forumThread" action="show" id="${post.parent.id}" params="${[board: post.parent.parent.abbreviation.replaceAll("/", "")]}">Reply</g:link>]
 </g:if>
 </div>
 <div class="post-content" style="display:inline-block;">
