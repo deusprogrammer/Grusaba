@@ -2,8 +2,9 @@ package com.ponychan.db.forum
 
 //Only the owner of the forum should be able to access this controller
 class ForumBoardController {
-
-    def show(Long id) { 
+	def userService
+	
+    def show(Long id) {
         def board = ForumBoard.get(id)
         
         if (!board) {
@@ -17,7 +18,7 @@ class ForumBoardController {
     }
     
     def board(String id) {
-        def board = ForumBoard.findByAbbreviation("/" + id + "/")
+		def board = ForumBoard.findByAbbreviation("/" + id + "/")
         
         println "ABBREV: ${id}"
                 

@@ -27,8 +27,6 @@ class SecurityFilters {
 					println "USER IS LOGGED IN ANONYMOUSLY AS IP ${user.ipAddress}"
 				}
 				else {
-					println "LAST SEEN: ${currentUser.lastSeen}"
-					println "LAST POST: ${currentUser.lastPost}"
 				}
 				
 				if (currentUser.banned) {
@@ -40,8 +38,17 @@ class SecurityFilters {
 
             }
             afterView = { Exception e ->
-				//userService.updateLastSeen()
             }
         }
+		
+		seen(action: 'show|board|create') {
+			before = {
+				def currentUser = userService.getCurrentUser()
+				userService.updateLastSeen()
+				println "UPDATING LAST SEEN"
+				println "LAST SEEN: ${currentUser.lastSeen}"
+				println "LAST POST: ${currentUser.lastPost}"
+			}
+		}
     }
 }
