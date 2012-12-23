@@ -29,11 +29,6 @@ class SecurityFilters {
 				}
 				else {
 				}
-				
-				if (currentUser.banned) {
-					redirect(controller: "error", action: "banned")
-					return
-				}
             }
             after = { Map model ->
 

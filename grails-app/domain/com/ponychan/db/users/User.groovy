@@ -8,7 +8,6 @@ class User {
     Date dateCreated
     Date lastSeen = new Date()
 	Date lastPost
-    boolean banned = false
     
     static hasMany = [forumObjects: ForumObject, threads: ForumThread, posts: ForumPost, contributedTo: ForumThread]
 

@@ -67,15 +67,18 @@ class ForumBoardController {
         def board = ForumBoard.get(id)
         
         if (!board) {
-            response.status = 404
-			return
+            flash.message = "Cannot find requested board!"
+            redirect(controller: "forum", action: "index")
+            return
         }
         
-        [board: board]
+        [board: board, forum: board.parent]
     }
     
-    def update() {
-        def board = new ForumBoard(params)
+    def update(Long id) {
+        def board = ForumBoard.get(id)
+		
+		board.properties = params
         
         if (!board.save(flush:true)) {
             flash.message = board.errors
