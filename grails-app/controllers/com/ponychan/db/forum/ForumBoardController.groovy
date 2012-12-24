@@ -87,7 +87,7 @@ class ForumBoardController {
 			return
         }
 		
-		[board: board, forum: board.parent]
+		render(view: "edit", model: [board: board, forum: board.parent])
 	}
     
     def update(Long id) {

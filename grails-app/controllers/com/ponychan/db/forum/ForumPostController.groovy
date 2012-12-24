@@ -56,6 +56,6 @@ class ForumPostController {
 		println "POSTER NAME: ${post.name}"
 		println "EMAIL:       ${post.email}"
         
-        redirect(controller: "forumThread", action: "show", id: params.parent.id)
+        redirect(controller: "forumThread", action: "show", id: params.parent.id, params: [board: post.parent.parent.abbreviation.replaceAll("/", "")])
     }
 }

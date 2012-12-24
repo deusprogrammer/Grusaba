@@ -10,6 +10,6 @@
 	    <g:render template="/forumPost/newPostForm" model="${[controller: 'forumPost']}" />
 	    <hr />
 		<g:render template="thread" model="${[thread: thread]}" />
-	    <g:link controller="forumBoard" action="show" id="${thread.parent.abbreviation.replaceAll("/", "")}">Return to ${thread.parent.abbreviation}</g:link>
+	    <g:link controller="forumBoard" action="board" id="${thread.parent.abbreviation.replaceAll("/", "")}">Return to ${thread.parent.abbreviation}</g:link>
 	</body>
 </html>
