@@ -41,7 +41,17 @@ div.image-expand {
 	display: none;
 	z-index: 10;
 	text-align: center;
+	vertical-align: middle;
 	background: rgba(0,0,0,0.3);
+}
+
+img.image-expand {
+	position:absolute;
+	top: 0; 
+	bottom: 0; 
+	left: 0; 
+	right: 0; 
+	margin: auto;
 }
 
 div.spinner {

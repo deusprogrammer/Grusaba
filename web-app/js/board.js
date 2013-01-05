@@ -89,7 +89,9 @@ $(function () {
 		var imageUrl = $(this).attr("image-fullSizeUrl");
 		console.log("IMAGE: " + imageUrl);
 		
-		$("div.spinner").fadeIn();
+		$("div.image-expand").hide();
+		$("div.spinner").fadeIn();			
+		
 		$("div.image-expand").html("<img class='image-expand' src='" + imageUrl + "' />").waitForImages(function () {
 			$image = $(this);
 			$("div.spinner").fadeOut(function() {
