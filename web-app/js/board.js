@@ -12,6 +12,9 @@ function centerElement(selector) {
 	var top = verticalMidpoint - verticalOffset;
 	var left = horizontalMidpoint - horizontalOffset;
 	
+	console.log("HEIGHT: " + $element.width());
+	console.log("WIDHT:  " + $element.height());
+	
 	console.log("HOFFSET: " + horizontalOffset);
 	console.log("VOFFSET: " + verticalOffset);
 	console.log("HMID:    " + horizontalMidpoint);
@@ -24,16 +27,82 @@ function centerElement(selector) {
 	$element.css("left", left);
 }
 
-$(function () {
-	centerElement("div.flash-message");
+function fitImage(imageSelector, containerSelector) {
+	var $container = $(containerSelector);
+	var maxWidth = $container.width();
+	var maxHeight = $container.height();
 	
+	var $image = $(imageSelector);
+	var imageWidth = $image.width();
+	var imageHeight = $image.height();
+	
+	var newWidth = 0;
+	var newHeight = 0;
+	
+	//Is width or height of picture taller?
+	if (imageWidth > imageHeight) {
+		var ratio = imageHeight/imageWidth;
+		console.log("IMAGE IS WIDER");
+		console.log("RATIO: " + ratio);
+		newWidth = maxWidth;
+		newHeight = newWidth*ratio;
+	}
+	else if (imageWidth < imageHeight) {
+		var ratio = imageWidth/imageHeight;
+		console.log("IMAGE IS TALLER");
+		console.log("RATIO: " + ratio);
+		newHeight = maxHeight;
+		newWidth = newHeight*(imageWidth/imageHeight);
+	}
+	else {
+		console.log("IMAGE IS SQUARE");
+		newHeight = maxHeight;
+		newWidth = maxWidth;
+	}
+	
+	$image.css("width", newWidth);
+	$image.css("height", newHeight);
+	centerElement("div.image-expand");
+}
+
+$(function () {
+	centerElement("div.spinner");
+	
+	$("div#content").hide().waitForImages(function (){
+		$("div.spinner").fadeOut();
+		$("div#content").fadeIn();
+	});
+	
+	centerElement("div.flash-message");
+		
 	$("button.flash-message").click(function() {
 		$("div.flash-message").fadeOut("slow");
-	})
+	});
 	
 	$("a.post-number").click(function () {
 		var postNumber = $(this).html();
 		console.log("POST: " + postNumber)
 		$("table.new-post textArea").val($("table.new-post textArea").val() + ">>" + postNumber + "\n");
-	})
+	});
+	
+	$("img.post-image").click(function () {
+		var imageUrl = $(this).attr("image-fullSizeUrl");
+		console.log("IMAGE: " + imageUrl);
+		
+		$("div.spinner").fadeIn();
+		$("div.image-expand").html("<img class='image-expand' src='" + imageUrl + "' />").waitForImages(function () {
+			$image = $(this);
+			$("div.spinner").fadeOut(function() {
+				$image.fadeIn();
+				fitImage("img.image-expand", "div.image-expand");
+			});
+		});
+	});
+	
+	$("div.image-expand").click(function () {
+		console.log("CLOSE IMAGE!");
+		$("div.image-expand").fadeOut(function() {
+			$(this).html("");
+		});
+	});
 })
