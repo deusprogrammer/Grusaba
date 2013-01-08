@@ -3,7 +3,7 @@ package com.ponychan.db.forum
 import com.sun.xml.internal.ws.org.objectweb.asm.Item;
 
 class ForumBoard extends ForumObject {
-    String abbreviation 
+    String abbreviation
    
     static belongsTo = [parent: Forum]
     static hasMany   = [children: ForumThread]
