@@ -18,7 +18,7 @@
 					<button class="flash-message">Okay</button>
 				</div>
 			</g:if>
-			<div class="image-expand"></div>
+			<div class="image-expand"><div class="image-expand-inner"></div><div class="fullscreen-button"><img src="${resource(dir: "images", file: "full-screen.png")}" /></div></div>
 			<g:layoutBody/>
 			<r:layoutResources />
 		</div>

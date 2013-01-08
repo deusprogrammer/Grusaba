@@ -60,6 +60,21 @@ function fitImage(imageSelector, containerSelector) {
 		newWidth = maxWidth;
 	}
 	
+	//Still not fitting?
+	if (newHeight > maxHeight) {
+		var ratio = maxHeight/newHeight;
+		newHeight = maxHeight;
+		newWidth = newWidth * ratio;
+	}
+	else if (newWidth > maxWidth) {
+		var ratio = maxWidth/newWidth;
+		newWidth = maxWidth;
+		newHeight = newHeight * ratio;
+	}
+	
+	console.log("NEW WIDTH:  " + newWidth);
+	console.log("NEW HEIGHT: " + newHeight);
+	
 	$image.css("width", newWidth);
 	$image.css("height", newHeight);
 	centerElement("div.image-expand");
@@ -90,21 +105,37 @@ $(function () {
 		console.log("IMAGE: " + imageUrl);
 		
 		$("div.image-expand").hide();
-		$("div.spinner").fadeIn();			
+		$("div.spinner").fadeIn();		
 		
-		$("div.image-expand").html("<img class='image-expand' src='" + imageUrl + "' />").waitForImages(function () {
-			$image = $(this);
+		$("div.image-expand-inner").html("<img class='image-expand' src='" + imageUrl + "' />").waitForImages(function () {
 			$("div.spinner").fadeOut(function() {
-				$image.fadeIn();
+				$("div.image-expand").fadeIn();
 				fitImage("img.image-expand", "div.image-expand");
 			});
 		});
 	});
 	
-	$("div.image-expand").click(function () {
+	$("div.image-expand-inner").click(function () {
 		console.log("CLOSE IMAGE!");
 		$("div.image-expand").fadeOut(function() {
-			$(this).html("");
+			$("div.image-expand-inner").html("");
+			$("div.fullscreen-button").hide();
 		});
 	});
+	
+	$("div.fullscreen-button").click(function (){
+		console.log("CLICKED FULLSCREEN!");
+		var url = $("img.image-expand").attr("src");
+		window.location.replace(url);
+	});
+	
+	$("div.image-expand").hover(
+		function() {
+			console.log("HOVER IN");
+			$("div.fullscreen-button").fadeIn();
+		},
+		function() {
+			console.log("HOVER OUT");
+			$("div.fullscreen-button").fadeOut();
+		});
 })

@@ -45,6 +45,21 @@ div.image-expand {
 	background: rgba(0,0,0,0.3);
 }
 
+div.fullscreen-button {
+	position:absolute;
+	display: none;
+	top: 0px;
+	right: 0px;
+	width: 100px;
+	height: 100px;
+	opacity: 0.5;
+}
+
+div.fullscreen-button img {
+	width: 100px;
+	height: 100px;
+}
+
 img.image-expand {
 	position:absolute;
 	top: 0; 
