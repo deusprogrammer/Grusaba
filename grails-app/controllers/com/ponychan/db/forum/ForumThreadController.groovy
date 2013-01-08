@@ -11,6 +11,8 @@ class ForumThreadController {
     
     def show(Long id) {
         def thread = ForumThread.get(id)
+		
+		def lastNameUsed = session["lastNameUsed"]
         
         if (!thread) {
             println "No thread with id ${id}"
@@ -18,11 +20,13 @@ class ForumThreadController {
 			return
         }
         
-        [thread: thread]
+        [thread: thread, last: lastNameUsed]
     }
     
     def save() {
 		def user = userService.getCurrentUser()
+		
+		session["lastNameUsed"] = [name: params.name, email: params.email]
 		
 		if (!user) {
 			println "Unknown error."

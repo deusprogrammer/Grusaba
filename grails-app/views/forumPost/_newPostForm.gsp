@@ -14,8 +14,8 @@
 <g:uploadForm controller="${controller}" action="save">
 	<table class="new-post">
 		<tbody>
-			 <tr><td class="label">Name</td><td><g:textField class="new-post" name="name" /></td></tr>
-		     <tr><td class="label">Email</td><td><g:textField class="new-post" name="email" /></td></tr>
+			 <tr><td class="label">Name</td><td><g:textField class="new-post" name="name" value="${last?.name}" /></td></tr>
+		     <tr><td class="label">Email</td><td><g:textField class="new-post" name="email" value="${last?.email}" /></td></tr>
 		     <tr><td class="label">Subject</td><td><g:textField class="new-post" name="topic" /><g:submitButton class="new-post" name="submit" value="Submit" /></td></tr>
 		     <tr><td class="label">Post</td><td><g:textArea class="new-post" cols="50" rows="5" name="${text}" /></td></tr>
 		     <tr><td class="label">File</td><td><g:field class="new-post" type="file" name="uploadFile" /></td></tr>

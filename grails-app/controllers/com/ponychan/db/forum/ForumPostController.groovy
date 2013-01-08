@@ -11,6 +11,7 @@ class ForumPostController {
     
     def save() {
 		def user = userService.getCurrentUser()
+		session["lastNameUsed"] = [name: params.name, email: params.email]
 		
 		if (!user) {
 			println "Unknown error."

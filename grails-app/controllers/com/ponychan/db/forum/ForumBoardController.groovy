@@ -6,6 +6,8 @@ class ForumBoardController {
 	
     def show(Long id) {
         def board = ForumBoard.get(id)
+		
+		def lastNameUsed = session["lastNameUsed"] 
         
         if (!board) {
             println "Unable to find the requested board"
@@ -14,11 +16,13 @@ class ForumBoardController {
 			return
         }
         
-        [board: board]
+        [board: board, last: lastNameUsed]
     }
     
     def board(String id) {
 		def board = ForumBoard.findByAbbreviation("/" + id + "/")
+		
+		def lastNameUsed = session["lastNameUsed"]
         
         println "ABBREV: ${id}"
                 
@@ -29,7 +33,7 @@ class ForumBoardController {
 			return
         }
         
-        render(view: "show", model: [board: board])
+        render(view: "show", model: [board: board, last: lastNameUsed])
     }
     
     def create() {
