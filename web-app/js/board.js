@@ -126,7 +126,7 @@ $(function () {
 	$("div.fullscreen-button").click(function (){
 		console.log("CLICKED FULLSCREEN!");
 		var url = $("img.image-expand").attr("src");
-		window.location.replace(url);
+		window.location.href = url;
 	});
 	
 	$("div.image-expand").hover(
