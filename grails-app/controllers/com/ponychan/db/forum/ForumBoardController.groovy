@@ -27,7 +27,7 @@ class ForumBoardController {
     def board(String id) {
 		params.max = Math.min(params.max ? params.int('max') : 10, 100)
 		
-		def board = ForumBoard.findByAbbreviation("/" + id + "/")
+		def board = ForumBoard.findByAbbreviation("/" + id + "/") ?: ForumBoard.findByAbbreviation(id)
 		
 		def lastNameUsed = session["lastNameUsed"]
         
@@ -89,7 +89,7 @@ class ForumBoardController {
     }
 	
 	def editBoard(String id) {
-		def board = ForumBoard.findByAbbreviation("/" + id + "/")
+		def board = ForumBoard.findByAbbreviation("/" + id + "/") ?: ForumBoard.findByAbbreviation(id)
         
         println "ABBREV: ${id}"
                 

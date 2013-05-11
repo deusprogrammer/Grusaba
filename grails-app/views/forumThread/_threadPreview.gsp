@@ -4,7 +4,7 @@
 		def list = thread.children.sort{it.dateCreated.getTime()}
 		def preview
 	
-		if (list.size() >= 3) {
+		if (list.size() >= 4) {
 		    preview = list[0..0] + list[-3..-1]
 		} else {
 		    preview = list
