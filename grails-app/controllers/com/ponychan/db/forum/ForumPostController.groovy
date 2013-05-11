@@ -28,14 +28,24 @@ class ForumPostController {
 		}
 		
 		def f = request.getFile('uploadFile')
-		def path = fileService.store(f)
+		def map = fileService.store(f)
+		def path = map.path
+		def thumb = map.thumb
 		
         def post = new ForumPost(params)
 		post.owner = user
 		post.email = params.email
 		
+		//Bump
+		def parent = ForumThread.get(params.parent.id)
+		if (parent) {
+			parent.lastUpdated = new Date()
+			parent.save()
+		}
+		
 		if (path) {
 			post.attachedImage = path
+			post.attachedThumbnail = thumb
 	        post.hasAttachedImage = true
 		}
 		

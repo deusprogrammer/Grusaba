@@ -3,8 +3,11 @@ package com.ponychan.db.forum
 //Only the owner of the forum should be able to access this controller
 class ForumBoardController {
 	def userService
+	def paginationService
 	
     def show(Long id) {
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		
         def board = ForumBoard.get(id)
 		
 		def lastNameUsed = session["lastNameUsed"] 
@@ -15,11 +18,15 @@ class ForumBoardController {
             redirect(controller: "forum", action: "index")
 			return
         }
+		
+		def map = paginationService.sortAndPaginate(board.children, params)
         
-        [board: board, last: lastNameUsed]
+        [board: map.board, threads: map.list, threadCount: map.totalRecords, last: lastNameUsed]
     }
     
     def board(String id) {
+		params.max = Math.min(params.max ? params.int('max') : 10, 100)
+		
 		def board = ForumBoard.findByAbbreviation("/" + id + "/")
 		
 		def lastNameUsed = session["lastNameUsed"]
@@ -32,8 +39,10 @@ class ForumBoardController {
             redirect(controller: "forum", action: "index")
 			return
         }
+		
+		def map = paginationService.sortAndPaginate(board.children, params)
         
-        render(view: "show", model: [board: board, last: lastNameUsed])
+        render(view: "show", model: [board: board, threads: map.list, threadCount: map.totalRecords, last: lastNameUsed])
     }
     
     def create() {

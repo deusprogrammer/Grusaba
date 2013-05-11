@@ -7,19 +7,53 @@ import org.imgscalr.Scalr
 import javax.imageio.ImageIO
 
 class FileService {
+	def grailsApplication
+	
 	def store(final file) {
 		def path = null
+		def thumbnailPath = null
 		if (!file.empty) {
 			def filename = file.getOriginalFilename()
 			def md5 = generateMD5(file)
 			def extension = getExtension(file)
 			
-			path = "C:/tmp/" + md5 + extension
+			path = grailsApplication.config.files.rootPath + "/images/" + md5 + extension
+			thumbnailPath = grailsApplication.config.files.rootPath + "/thumbnails/" + md5 + extension
 			
 			file.transferTo(new File(path))
+			writeThumbnail(path, thumbnailPath)
 		}
 		
-		return path
+		return [path: path, thumb: thumbnailPath]
+	}
+	
+	def writeThumbnail(String srcFile, String dstFile) {
+		def file  = new File(srcFile)
+		def out = new File(dstFile)
+		
+		if (!file || file.size() == 0) {
+			return false
+		}
+		
+		String ext = getExtension(file)
+		def image = ImageIO.read(file)
+		def thumbnail = Scalr.resize(image, 200)
+		
+		switch (ext.toLowerCase()) {
+			case ".gif":
+				ImageIO.write(thumbnail, "GIF", out)
+				break
+			case ".png":
+				ImageIO.write(thumbnail, "PNG", out)
+				break
+			case ".jpg":
+			case ".jpeg":
+			default:
+				ImageIO.write(thumbnail, "JPEG", out)
+				break
+		}
+		
+		return true
 	}
 	
 	def writeThumbnail(String filename, OutputStream out) {

@@ -89,3 +89,10 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+if (System.properties['os.name'].toLowerCase().contains('windows')) {
+	files.rootPath = "c:/tmp/grusaba"
+} else {
+	files.rootPath = "/opt/grusaba"
+}
+

@@ -44,7 +44,9 @@ class ForumThreadController {
 		
 		//Get file
 		def f = request.getFile('uploadFile')
-		def path = fileService.store(f)
+		def map = fileService.store(f)
+		def path = map.path
+		def thumb = map.thumb
 		
 		if (!path) {
 			println "You must attach a picture to start a thread!"
@@ -62,6 +64,7 @@ class ForumThreadController {
 		firstPost.email = params.email
 		firstPost.owner = user
 		firstPost.attachedImage = path
+		firstPost.attachedThumbnail = thumb
 		firstPost.hasAttachedImage = true
 		
 		thread.owner = user

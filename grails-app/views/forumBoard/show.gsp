@@ -8,10 +8,11 @@
 	    <hr />
 	    <g:render template="/forumPost/newPostForm" model="${[controller: 'forumThread']}" />
 	    <hr />
-	    <g:each in="${board.children.sort{it.dateCreated.getTime()}}" var="thread">
-	        <g:render template="/forumThread/thread" model="${[thread: thread]}" />
+	    <g:each in="${threads}" var="thread">
+	        <g:render template="/forumThread/threadPreview" model="${[thread: thread]}" />
 	        <hr />
 	    </g:each>
+	    <g:paginate controller="forumBoard" action="board" id="${board.abbreviation.replaceAll('/', '')}" total="${threadCount}" />
 	    <a href="${createLink(controller: 'forum', action: 'index')}">Return to index</a>
 	</body>
 </html>

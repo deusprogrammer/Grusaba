@@ -5,6 +5,7 @@ class ForumPost extends ForumObject {
 	String topic
 	String email
     String attachedImage
+	String attachedThumbnail
     boolean hasAttachedImage = false
 
     static belongsTo = [parent: ForumThread]
@@ -15,6 +16,7 @@ class ForumPost extends ForumObject {
     
     static constraints = {
         attachedImage nullable: true
+		attachedThumbnail nullable: true
 		topic nullable: true
 		email nullable: true
     }

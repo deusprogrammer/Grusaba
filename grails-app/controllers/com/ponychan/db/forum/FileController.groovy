@@ -19,9 +19,9 @@ class FileController {
 			return
 		}
 		
-		if (!fileService.writeThumbnail(post.attachedImage, response.outputStream)) {
+		if (!fileService.writeThumbnail(post.attachedThumbnail, response.outputStream)) {
 			response.status = 404
-			return	
+			return
 		}
 		
 		return
