@@ -20,4 +20,4 @@
     <div class="post-text">${post.strippedText}</div>
    </div>
 </div>
-<g:if test="${first}"><div><i>Posts omitted...click reply to expand</i></div></g:if>
+<g:if test="${first && moreThanThree && preview}"><div><i>Posts omitted...click reply to expand</i></div></g:if>

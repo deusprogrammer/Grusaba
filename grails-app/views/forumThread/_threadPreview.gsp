@@ -9,14 +9,16 @@
 		} else {
 		    preview = list
 		}
+		
+		def moreThanThree = list.size() > 3
 	%>
     <g:each in="${preview}" var="post">
     	<g:if test="${first}">
     		<% first = false %>
-        	<g:render template="/forumPost/post" model="${[post: post, first: true]}"/>
+        	<g:render template="/forumPost/post" model="${[post: post, first: true, moreThanThree: moreThanThree, preview: true]}"/>
         </g:if>
         <g:else>
-        	<g:render template="/forumPost/post" model="${[post: post, first: false]}"/>
+        	<g:render template="/forumPost/post" model="${[post: post, first: false, moreThanThree: moreThanThree, preview: true]}"/>
         </g:else>
     </g:each>
 </div>
